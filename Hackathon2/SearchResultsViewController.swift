@@ -8,11 +8,12 @@
 
 import UIKit
 
-class SearchResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, APIControllerProtocol  {
+class SearchResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, APIControllerProtocol  {
     
     @IBOutlet var appsTableView : UITableView?
     let kCellIdentifier: String = "SearchResultCell"
     var commentData : NSMutableArray = NSMutableArray()
+    var searchResults : [String] = ["result1", "result2"]
  
     var jsonResult : NSDictionary?
     
@@ -81,24 +82,7 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func loadData() {
-        self.commentData.removeAllObjects()
-        
-        var commentQuery : PFQuery = PFQuery(className: "Comment")
-        
-        commentQuery.findObjectsInBackgroundWithBlock{
-            (objects:[AnyObject]!, error:NSError!) -> Void in
-            
-            if (!error) {
-                for object in objects {
-                    self.commentData.addObject(object)
-                }
-                
-                let reverseArray:NSArray = self.commentData.reverseObjectEnumerator().allObjects
-                self.commentData = reverseArray as NSMutableArray
-                
-                // TODO self.appsTableView!.reloadData()
-            }
-        }
+        // TODO: Reload search? or possibly load saved results from Parse backend?
     }
     
     override func viewDidLoad() {
@@ -122,24 +106,56 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
             })
     }
     
-    // The protocol methods for UITableViewDataSource and UITableViewDelegate
-    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        return 1
+    // The protocol methods for UISearchDisplayDelegate
+    func filterContentForSearchText(searchText : String) {
+        // TODO
     }
     
-    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+    func searchDisplayController(controller: UISearchDisplayController!, shouldReloadTableForSearchString searchString: String!) -> Bool {
+        self.filterContentForSearchText(searchString)
         
-        let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(kCellIdentifier) as UITableViewCell
+        return true
+    }
+    
+    // The protocol methods for UITableViewDataSource and UITableViewDelegate
+    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+        var count = 1
         
-        if (jsonResult) {
-            let genomicTrack : NSDictionary = jsonResult!["genomicTrack"] as NSDictionary
-            let isoformTracks : NSArray = jsonResult!["isoformTracks"] as NSArray
-            let name : NSString = genomicTrack["name"] as NSString
-            let chromosome: NSString = genomicTrack["chromosome"] as NSString
-            let length: Int = genomicTrack["length"] as Int
-            
-            cell.textLabel.text = name
-            cell.detailTextLabel.text = "chromosome: \(chromosome) length: \(length)"
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            count =  searchResults.count
+        }
+        
+        return count
+    }
+    
+    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell! {
+        var cell : UITableViewCell!
+        
+        if (tableView != nil) {
+            cell  = tableView.dequeueReusableCellWithIdentifier(kCellIdentifier) as UITableViewCell!
+        }
+        
+        if (cell == nil) {
+            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: kCellIdentifier)
+        }
+        
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            var result : String = searchResults[indexPath.row]
+           
+            cell.textLabel.text = result
+            //cell.detailTextLabel.text = "todo"
+        } else {
+        
+            if (jsonResult) {
+                let genomicTrack : NSDictionary = jsonResult!["genomicTrack"] as NSDictionary
+                let isoformTracks : NSArray = jsonResult!["isoformTracks"] as NSArray
+                let name : NSString = genomicTrack["name"] as NSString
+                let chromosome: NSString = genomicTrack["chromosome"] as NSString
+                let length: Int = genomicTrack["length"] as Int
+                
+                cell.textLabel.text = name
+                cell.detailTextLabel.text = "chromosome: \(chromosome) length: \(length)"
+            }
         }
         
         return cell
@@ -148,6 +164,7 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject) {
         var viewController: AnyObject! = segue.destinationViewController
         
+        // if seque.idenitifer == "xxx") then
         if (viewController is DetailsViewController) {
             var detailsViewController: DetailsViewController = segue.destinationViewController as DetailsViewController
             

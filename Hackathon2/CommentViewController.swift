@@ -60,9 +60,9 @@ class CommentViewController: UITableViewController {
     
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         let cell : CommentTableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as CommentTableViewCell
+        
         let comment : PFObject = self.commentData.objectAtIndex(indexPath!.row) as PFObject
         cell.commentText.text = comment.objectForKey("comment") as String
-        
         cell.commentText.alpha = 0
         
         var findUser : PFQuery = PFUser.query()
