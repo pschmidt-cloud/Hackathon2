@@ -1,0 +1,3 @@
+A very much WIP test app to search for isoforms and pathways and display them in graphical form. Also will allow commenting on them and persisting them to cloud via Parse.com. Also plan to allow live search of comments and display the appropriate isoform or pathway related to the search.
+
+Isoforms will be drawn just using rectangles, pathways will be svg xml displayed in an UIImageView
