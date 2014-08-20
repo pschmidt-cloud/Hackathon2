@@ -11,9 +11,25 @@ import UIKit
 class SearchResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, APIControllerProtocol  {
     
     @IBOutlet var appsTableView : UITableView?
+    @IBOutlet weak var searchText: UITextField!
+    
+    @IBAction func searchButton(sender: AnyObject) {
+        api.searchIsoform(searchText.text);
+        self.jsonResult = nil
+        self.appsTableView!.reloadData()
+    }
+    
+    init(coder aDecoder: NSCoder!) {
+        super.init(coder: aDecoder)
+    }
+    init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+    }
+
     let kCellIdentifier: String = "SearchResultCell"
     var commentData : NSMutableArray = NSMutableArray()
-    var searchResults : [String] = ["result1", "result2"]
+    var searchResults : [String] = ["ACAP3", "BRCA1"]
  
     var jsonResult : NSDictionary?
     
@@ -27,7 +43,8 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     override func viewDidAppear(animated: Bool) {
-        // TODO self.loadData()
+        // This login logic is from the youtube tutorial http://www.youtube.com/watch?v=Q6kTw_cK3zY
+        // TODO: Move to top level controller so it happens on all pages
         
         if (!PFUser.currentUser()) {
             var loginAlert : UIAlertController = UIAlertController(title: "Login", message: "Please login", preferredStyle:UIAlertControllerStyle.Alert)
@@ -88,7 +105,7 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        api.searchIsoform("NM_030649.2");
+        //api.searchIsoform("NM_030649.2");
     }
     
     override func didReceiveMemoryWarning() {

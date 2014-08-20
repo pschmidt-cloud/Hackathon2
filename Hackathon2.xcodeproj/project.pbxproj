@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E2F405419A3EAB600548BD4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F405319A3EAB600548BD4 /* SearchViewController.swift */; };
 		4E3F80D21992CAB800F0B454 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E3F80D11992CAB800F0B454 /* AdSupport.framework */; };
 		4E3F80D51992CAC700F0B454 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E3F80D31992CAC700F0B454 /* Accounts.framework */; };
 		4E3F80D61992CAC700F0B454 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E3F80D41992CAC700F0B454 /* AudioToolbox.framework */; };
@@ -32,6 +33,7 @@
 		4E9B94D2199150B9006C4B2D /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B94D1199150B9006C4B2D /* APIController.swift */; };
 		4E9B94D419915117006C4B2D /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B94D319915117006C4B2D /* DetailsViewController.swift */; };
 		4E9B94D619915175006C4B2D /* IsoformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B94D519915175006C4B2D /* IsoformView.swift */; };
+		4EEA627B19A2B58E00B48557 /* SearchBookmarkedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEA627A19A2B58E00B48557 /* SearchBookmarkedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E2F405319A3EAB600548BD4 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		4E3F80D11992CAB800F0B454 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		4E3F80D31992CAC700F0B454 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		4E3F80D41992CAC700F0B454 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -74,6 +77,7 @@
 		4E9B94D1199150B9006C4B2D /* APIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
 		4E9B94D319915117006C4B2D /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		4E9B94D519915175006C4B2D /* IsoformView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsoformView.swift; sourceTree = "<group>"; };
+		4EEA627A19A2B58E00B48557 /* SearchBookmarkedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBookmarkedViewController.swift; sourceTree = "<group>"; };
 		4EF868301992C86A004C8CF4 /* Hackathon2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hackathon2-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,6 +159,8 @@
 				4E9B94B419914C42006C4B2D /* AppDelegate.swift */,
 				4EF868301992C86A004C8CF4 /* Hackathon2-Bridging-Header.h */,
 				4E9B94B619914C42006C4B2D /* SearchResultsViewController.swift */,
+				4EEA627A19A2B58E00B48557 /* SearchBookmarkedViewController.swift */,
+				4E2F405319A3EAB600548BD4 /* SearchViewController.swift */,
 				4E9B94B819914C42006C4B2D /* Main.storyboard */,
 				4E3F80F119943A7F00F0B454 /* CommentViewController.swift */,
 				4E3F80F3199445C500F0B454 /* CommentTableViewCell.swift */,
@@ -292,7 +298,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E2F405419A3EAB600548BD4 /* SearchViewController.swift in Sources */,
 				4E3F80F219943A7F00F0B454 /* CommentViewController.swift in Sources */,
+				4EEA627B19A2B58E00B48557 /* SearchBookmarkedViewController.swift in Sources */,
 				4E9B94B719914C42006C4B2D /* SearchResultsViewController.swift in Sources */,
 				4E9B94D619915175006C4B2D /* IsoformView.swift in Sources */,
 				4E3F80F4199445C500F0B454 /* CommentTableViewCell.swift in Sources */,
